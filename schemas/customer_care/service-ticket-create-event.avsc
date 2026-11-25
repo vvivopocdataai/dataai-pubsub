@@ -1,0 +1,30 @@
+{
+  "type": "record",
+  "name": "ServiceTicketCreateEvent",
+  "namespace": "com.vivo.dataai.customercare",
+  "doc": "Entidade TM Forum: PartyInteraction \u00b7 TMF683. Espelha exatamente a tabela ATEND_PROD.TB_ATEND (mesmos nomes e tipos de coluna, incluindo a grafia em maiusculas da origem Oracle), para uso via broker sem disrupcao de consumidores diretos da base. O motivo (ATEND_PROD.TB_MOTIVO_ATEND) e publicado em contrato/topico proprio (MotivoAtendCreateEvent), nao mais aninhado aqui - CD_MOTIVO permanece como FK simples. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "ServiceTicketCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "ServiceTicket",
+      "fields": [
+        {"name": "NR_PROTOC", "type": "string", "doc": "PK."},
+        {"name": "CD_CLI", "type": "string"},
+        {"name": "NR_CONTA", "type": ["null", "string"], "default": null},
+        {"name": "NR_FATURA", "type": ["null", "string"], "default": null, "doc": "FK -> billing.fatura.nr_fatura."},
+        {"name": "NR_PROTOC_2VIA", "type": ["null", "string"], "default": null, "doc": "FK -> billing.solic_segunda_via.nr_protocolo."},
+        {"name": "CD_MOTIVO", "type": "string", "doc": "FK -> TB_MOTIVO_ATEND.CD_MOTIVO."},
+        {"name": "DS_CANAL", "type": "string"},
+        {"name": "DT_ABERT", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "DATE no Oracle (inclui hora), mapeado para timestamp-millis."},
+        {"name": "DT_FECH", "type": ["null", {"type": "long", "logicalType": "timestamp-millis"}], "default": null, "doc": "DATE no Oracle (inclui hora), mapeado para timestamp-millis."},
+        {"name": "ST_ATEND", "type": "string"},
+        {"name": "DS_OBS", "type": ["null", "string"], "default": null},
+        {"name": "DS_END_INST", "type": ["null", "string"], "default": null}
+      ]
+    }}
+  ]
+}

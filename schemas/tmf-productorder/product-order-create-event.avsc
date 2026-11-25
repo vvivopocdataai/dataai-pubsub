@@ -1,0 +1,25 @@
+{
+  "type": "record",
+  "name": "ProductOrderCreateEvent",
+  "namespace": "com.vivo.dataai.tmfproductorder",
+  "doc": "Entidade TM Forum: ProductOrder \u00b7 TMF622. Espelha exatamente a tabela ATEND_PROD.TB_PED (mesmos nomes e tipos de coluna, incluindo a grafia em maiusculas da origem Oracle), para uso via broker sem disrupcao de consumidores diretos da base. Os itens (ATEND_PROD.TB_ITEM_PED) sao publicados em contrato/topico proprio (ProductOrderItemCreateEvent), nao mais aninhados aqui. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "ProductOrderCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "ProductOrder",
+      "fields": [
+        {"name": "NR_PED", "type": "long", "doc": "PK. NUMBER(10,0) na origem, excede int32, mapeado para long."},
+        {"name": "CD_CLI", "type": "string"},
+        {"name": "CD_ASSIN", "type": ["null", "long"], "default": null, "doc": "FK -> TB_ASSIN.CD_ASSIN, quando o pedido referencia uma assinatura existente. NUMBER(10,0) na origem, mapeado para long."},
+        {"name": "TP_PED", "type": "string"},
+        {"name": "DS_CANAL", "type": "string"},
+        {"name": "DT_PED", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "DATE no Oracle (inclui hora), mapeado para timestamp-millis."},
+        {"name": "ST_PED", "type": "string"}
+      ]
+    }}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "name": "MotivoAtendCreateEvent",
+  "namespace": "com.vivo.dataai.customercare",
+  "doc": "Dominio associado a PartyInteraction (TMF683), sem entidade TM Forum numerada propria. Espelha exatamente a tabela ATEND_PROD.TB_MOTIVO_ATEND (mesmos nomes e tipos de coluna, incluindo a grafia em maiusculas da origem Oracle), para uso via broker sem disrupcao de consumidores diretos da base. Tabela de referencia estatica, baixissima frequencia de mudanca. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "MotivoAtendCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "MotivoAtend",
+      "fields": [
+        {"name": "CD_MOTIVO", "type": "string", "doc": "PK."},
+        {"name": "DS_MOTIVO", "type": "string"}
+      ]
+    }}
+  ]
+}

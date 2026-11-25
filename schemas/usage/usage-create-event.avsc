@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "name": "UsageCreateEvent",
+  "namespace": "com.vivo.dataai.usage",
+  "doc": "Entidade TM Forum: Usage \u00b7 TMF635. Espelha exatamente a tabela ATEND_PROD.TB_CONSUMO_MES (mesmos nomes e tipos de coluna, incluindo a grafia em maiusculas da origem Oracle), para uso via broker sem disrupcao de consumidores diretos da base. Chave composta: CD_ASSIN + MES_REF. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "UsageCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "UsageRecord",
+      "fields": [
+        {"name": "CD_ASSIN", "type": "long", "doc": "PK1. FK -> TB_ASSIN.CD_ASSIN. NUMBER(10,0) na origem, excede int32, mapeado para long."},
+        {"name": "MES_REF", "type": "string", "doc": "PK2. CHAR(6), formato AAAAMM."},
+        {"name": "QT_MIN", "type": "int", "doc": "NUMBER(8,0) na origem."},
+        {"name": "QT_MB", "type": "long", "doc": "NUMBER(10,0) na origem, excede int32, mapeado para long."},
+        {"name": "QT_SMS", "type": "int", "doc": "NUMBER(6,0) na origem."},
+        {"name": "VL_EXCED", "type": {"type": "bytes", "logicalType": "decimal", "precision": 10, "scale": 2}}
+      ]
+    }}
+  ]
+}

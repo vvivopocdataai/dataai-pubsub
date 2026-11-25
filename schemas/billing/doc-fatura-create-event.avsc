@@ -1,0 +1,25 @@
+{
+  "type": "record",
+  "name": "DocFaturaCreateEvent",
+  "namespace": "com.vivo.dataai.billing",
+  "doc": "Entidade TM Forum: sub-recurso Document de CustomerBill \u00b7 TMF678. Espelha exatamente a tabela billing.doc_fatura (mesmos nomes e tipos de coluna), para uso via broker sem disrupcao de consumidores diretos da base. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "DocFaturaCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "DocFatura",
+      "fields": [
+        {"name": "id_doc", "type": "string", "doc": "PK."},
+        {"name": "id_fatura", "type": "string", "doc": "FK -> fatura.id_fatura."},
+        {"name": "ds_url_pdf", "type": "string"},
+        {"name": "tp_via", "type": "string"},
+        {"name": "nr_versao", "type": "int"},
+        {"name": "dt_geracao", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+      ]
+    }}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "LegacyAccountChangeEvent",
+  "namespace": "com.vivo.dataai.crmlegado",
+  "doc": "Entidade TM Forum: BillingAccount \u00b7 TMF666. Representa a conta do cliente no CRM legado, espelhada no faturamento sob outra chave. Capturado via CDC. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "LegacyAccountChangeEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "LegacyAccount",
+      "fields": [
+        {"name": "nr_conta", "type": "string", "doc": "Identificador unico da BillingAccount (TMF666 id) no CRM legado."},
+        {"name": "cd_cli", "type": "string", "doc": "Referencia ao Customer/Individual (TMF629/TMF632) titular da conta."},
+        {"name": "dia_venc", "type": "int", "doc": "Dia de vencimento da fatura (TMF666 billingDate), entre 1 e 28."},
+        {"name": "st_conta", "type": "string", "doc": "Situacao da conta (TMF666 BillingAccount.state)."},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "Data/hora da ultima atualizacao do registro."}
+      ]
+    }}
+  ]
+}

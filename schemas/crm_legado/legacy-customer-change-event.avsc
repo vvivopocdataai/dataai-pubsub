@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "LegacyCustomerChangeEvent",
+  "namespace": "com.vivo.dataai.crmlegado",
+  "doc": "Entidades TM Forum: Customer \u00b7 TMF629 e Individual \u00b7 TMF632. Espelha exatamente a tabela crm_legado.tb_cli (mesmos nomes e tipos de coluna), capturado via CDC, para uso via broker sem disrupcao de consumidores diretos da base. Os enderecos (crm_legado.tb_end_cli) sao publicados em contrato/topico proprio (LegacyCustomerAddressChangeEvent), nao mais aninhados aqui. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "LegacyCustomerChangeEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "LegacyCustomer",
+      "fields": [
+        {"name": "cd_cli", "type": "string", "doc": "PK."},
+        {"name": "nm_cli", "type": "string"},
+        {"name": "nr_cpf", "type": "string"},
+        {"name": "dt_nasc", "type": ["null", {"type": "int", "logicalType": "date"}], "default": null},
+        {"name": "ds_email", "type": ["null", "string"], "default": null},
+        {"name": "nr_tel", "type": ["null", "string"], "default": null},
+        {"name": "st_cli", "type": "string"},
+        {"name": "dt_cad", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+      ]
+    }}
+  ]
+}

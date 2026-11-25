@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "LegacyCustomerAddressChangeEvent",
+  "namespace": "com.vivo.dataai.crmlegado",
+  "doc": "Entidade TM Forum: GeographicAddress \u00b7 TMF673. Espelha exatamente a tabela crm_legado.tb_end_cli (mesmos nomes e tipos de coluna), capturado via CDC, para uso via broker sem disrupcao de consumidores diretos da base. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "LegacyCustomerAddressChangeEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "LegacyCustomerAddress",
+      "fields": [
+        {"name": "id_endereco", "type": "int", "doc": "PK."},
+        {"name": "cd_cli", "type": "string", "doc": "FK -> tb_cli.cd_cli."},
+        {"name": "ds_logradouro", "type": ["null", "string"], "default": null},
+        {"name": "nr_logradouro", "type": ["null", "string"], "default": null},
+        {"name": "nm_cidade", "type": ["null", "string"], "default": null},
+        {"name": "sg_uf", "type": ["null", "string"], "default": null},
+        {"name": "nr_cep", "type": ["null", "string"], "default": null},
+        {"name": "tp_end", "type": "string"},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+      ]
+    }}
+  ]
+}

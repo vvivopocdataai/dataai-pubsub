@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "name": "CommunicationSentEvent",
+  "namespace": "com.vivo.dataai.notificacao",
+  "doc": "Entidade TM Forum: CommunicationMessage \u00b7 TMF681. Espelha exatamente a tabela notificacao.envio_comunicacao (mesmos nomes e tipos de coluna), para uso via broker sem disrupcao de consumidores diretos da base. eventType pode ser 'CommunicationSentEvent' ou 'CommunicationDeliveredEvent', mesma estrutura de payload. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "CommunicationSentEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "Communication",
+      "fields": [
+        {"name": "id_envio", "type": "string", "doc": "PK."},
+        {"name": "id_template", "type": "string", "doc": "FK -> template.id_template."},
+        {"name": "tp_canal", "type": "string"},
+        {"name": "ds_assunto", "type": "string"},
+        {"name": "ds_conteudo", "type": ["null", "string"], "default": null},
+        {"name": "ds_destino", "type": "string"},
+        {"name": "cd_cli", "type": "string"},
+        {"name": "dt_envio", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+        {"name": "dt_entrega", "type": ["null", {"type": "long", "logicalType": "timestamp-millis"}], "default": null},
+        {"name": "st_entrega", "type": "string"},
+        {"name": "qt_tentativas", "type": "int"},
+        {"name": "nr_fatura", "type": ["null", "string"], "default": null},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+      ]
+    }}
+  ]
+}

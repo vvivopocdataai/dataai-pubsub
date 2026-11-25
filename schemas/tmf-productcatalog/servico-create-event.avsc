@@ -1,0 +1,22 @@
+{
+  "type": "record",
+  "name": "ServicoCreateEvent",
+  "namespace": "com.vivo.dataai.tmfproductcatalog",
+  "doc": "Entidade TM Forum: ProductOffering \u00b7 TMF620. Espelha exatamente a tabela ATEND_PROD.TB_SERV (mesmos nomes e tipos de coluna, incluindo a grafia em maiusculas da origem Oracle), para uso via broker sem disrupcao de consumidores diretos da base. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "ServicoCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "Servico",
+      "fields": [
+        {"name": "CD_SERV", "type": "string", "doc": "PK."},
+        {"name": "DS_SERV", "type": "string"},
+        {"name": "TP_SERV", "type": "string"},
+        {"name": "VL_SERV", "type": {"type": "bytes", "logicalType": "decimal", "precision": 10, "scale": 2}}
+      ]
+    }}
+  ]
+}

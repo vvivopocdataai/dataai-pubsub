@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "name": "ServAssinCreateEvent",
+  "namespace": "com.vivo.dataai.tmfproductinventory",
+  "doc": "Entidade TM Forum: Product \u00b7 TMF637 (relacionado via productRelationship a assinatura pai). Espelha exatamente a tabela ATEND_PROD.TB_SERV_ASSIN (mesmos nomes e tipos de coluna, incluindo a grafia em maiusculas da origem Oracle), para uso via broker sem disrupcao de consumidores diretos da base. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "ServAssinCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "ServAssin",
+      "fields": [
+        {"name": "ID_SERV_ASSIN", "type": "long", "doc": "PK. NUMBER(10,0) na origem, excede int32, mapeado para long."},
+        {"name": "CD_ASSIN", "type": "long", "doc": "FK -> TB_ASSIN.CD_ASSIN. NUMBER(10,0) na origem, mapeado para long."},
+        {"name": "CD_SERV", "type": "string", "doc": "FK -> TB_SERV.CD_SERV."},
+        {"name": "DT_ATIV", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "DATE no Oracle (inclui hora), mapeado para timestamp-millis."},
+        {"name": "DT_DESATIV", "type": ["null", {"type": "long", "logicalType": "timestamp-millis"}], "default": null, "doc": "DATE no Oracle (inclui hora), mapeado para timestamp-millis."},
+        {"name": "ST", "type": "string", "doc": "CHAR(1) na origem ('A'/'I')."}
+      ]
+    }}
+  ]
+}

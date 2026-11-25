@@ -1,0 +1,21 @@
+{
+  "type": "record",
+  "name": "BillingAccountCreateEvent",
+  "namespace": "com.vivo.dataai.billing",
+  "doc": "Entidade TM Forum: BillingAccount \u00b7 TMF666. Representa a conta de cobranca do cliente no sistema de faturamento, vinculada a conta equivalente do CRM legado. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "BillingAccountCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "BillingAccount",
+      "fields": [
+        {"name": "id_conta", "type": "string", "doc": "Identificador unico da BillingAccount (TMF666 id) no sistema de faturamento."},
+        {"name": "id_conta_crm", "type": "string", "doc": "Chave de correlacao (crosswalk) com a conta equivalente no CRM legado (mesma entidade BillingAccount, TMF666)."},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "Data/hora da ultima atualizacao do registro."}
+      ]
+    }}
+  ]
+}

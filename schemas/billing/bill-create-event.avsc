@@ -1,0 +1,29 @@
+{
+  "type": "record",
+  "name": "BillCreateEvent",
+  "namespace": "com.vivo.dataai.billing",
+  "doc": "Entidade TM Forum: CustomerBill \u00b7 TMF678. Espelha exatamente a tabela billing.fatura (mesmos nomes e tipos de coluna), para uso via broker sem disrupcao de consumidores diretos da base. Os itens (billing.item_fatura) e documentos (billing.doc_fatura) sao publicados em contratos/topicos proprios (ItemFaturaCreateEvent, DocFaturaCreateEvent), nao mais aninhados aqui. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "BillCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "Bill",
+      "fields": [
+        {"name": "id_fatura", "type": "string", "doc": "PK."},
+        {"name": "nr_fatura", "type": "string", "doc": "Unico."},
+        {"name": "id_conta", "type": "string", "doc": "FK -> conta_cobranca.id_conta."},
+        {"name": "dt_emissao", "type": {"type": "int", "logicalType": "date"}},
+        {"name": "dt_vencimento", "type": {"type": "int", "logicalType": "date"}},
+        {"name": "mes_ref", "type": "string"},
+        {"name": "vl_total", "type": {"type": "bytes", "logicalType": "decimal", "precision": 12, "scale": 2}},
+        {"name": "vl_sem_imposto", "type": {"type": "bytes", "logicalType": "decimal", "precision": 12, "scale": 2}},
+        {"name": "vl_saldo", "type": {"type": "bytes", "logicalType": "decimal", "precision": 12, "scale": 2}},
+        {"name": "st_fatura", "type": "string"},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+      ]
+    }}
+  ]
+}

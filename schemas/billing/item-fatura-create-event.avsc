@@ -1,0 +1,25 @@
+{
+  "type": "record",
+  "name": "ItemFaturaCreateEvent",
+  "namespace": "com.vivo.dataai.billing",
+  "doc": "Entidade TM Forum: AppliedCustomerBillingRate \u00b7 TMF678. Espelha exatamente a tabela billing.item_fatura (mesmos nomes e tipos de coluna), para uso via broker sem disrupcao de consumidores diretos da base. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "ItemFaturaCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "ItemFatura",
+      "fields": [
+        {"name": "id_item", "type": "string", "doc": "PK."},
+        {"name": "id_fatura", "type": "string", "doc": "FK -> fatura.id_fatura."},
+        {"name": "ds_item", "type": "string"},
+        {"name": "tp_item", "type": "string"},
+        {"name": "vl_item", "type": {"type": "bytes", "logicalType": "decimal", "precision": 12, "scale": 2}},
+        {"name": "dt_item", "type": {"type": "int", "logicalType": "date"}},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+      ]
+    }}
+  ]
+}

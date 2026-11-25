@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "name": "CustomerCreateEvent",
+  "namespace": "com.vivo.dataai.crm",
+  "doc": "Entidade TM Forum: Customer \u00b7 TMF629. Espelha exatamente a tabela crm_digital.customer (mesmos nomes e tipos de coluna), para uso via broker sem disrupcao de consumidores diretos da base. Os meios de contato (crm_digital.contact_medium) sao publicados em contrato/topico proprio (ContactMediumCreateEvent), nao mais aninhados aqui. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "CustomerCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "Customer",
+      "fields": [
+        {"name": "id", "type": "string", "doc": "PK."},
+        {"name": "party_id", "type": "string", "doc": "FK -> party_individual.id."},
+        {"name": "name", "type": "string"},
+        {"name": "status", "type": "string"},
+        {"name": "valid_from", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+      ]
+    }}
+  ]
+}

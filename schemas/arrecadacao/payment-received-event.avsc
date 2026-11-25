@@ -1,0 +1,29 @@
+{
+  "type": "record",
+  "name": "PaymentReceivedEvent",
+  "namespace": "com.vivo.dataai.arrecadacao",
+  "doc": "Entidade TM Forum: Payment \u00b7 TMF676. Espelha exatamente a tabela arrecadacao.pagamento (mesmos nomes e tipos de coluna), para uso via broker sem disrupcao de consumidores diretos da base. eventType pode ser 'PaymentReceivedEvent' (captura) ou 'PaymentSettledEvent' (baixa), mesma estrutura de payload. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "PaymentReceivedEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "Payment",
+      "fields": [
+        {"name": "id_pagamento", "type": "string", "doc": "PK."},
+        {"name": "nr_nsu", "type": "string"},
+        {"name": "id_conta", "type": "string"},
+        {"name": "nr_fatura", "type": ["null", "string"], "default": null},
+        {"name": "vl_pago", "type": {"type": "bytes", "logicalType": "decimal", "precision": 12, "scale": 2}},
+        {"name": "dt_pagamento", "type": {"type": "int", "logicalType": "date"}},
+        {"name": "dt_baixa", "type": ["null", {"type": "int", "logicalType": "date"}], "default": null},
+        {"name": "st_pagamento", "type": "string", "doc": "Valores permitidos pela constraint CHECK da origem: CAPTURADO, BAIXADO."},
+        {"name": "id_forma", "type": "string", "doc": "FK -> forma_pgto.id_forma."},
+        {"name": "id_lote", "type": ["null", "string"], "default": null, "doc": "FK -> lote_retorno.id_lote."},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+      ]
+    }}
+  ]
+}

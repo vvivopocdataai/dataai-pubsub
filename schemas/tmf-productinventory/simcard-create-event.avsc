@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "SimCardCreateEvent",
+  "namespace": "com.vivo.dataai.tmfproductinventory",
+  "doc": "Entidade TM Forum: Resource \u00b7 TMF639. Espelha exatamente a tabela ATEND_PROD.TB_SIMCARD (mesmos nomes e tipos de coluna, incluindo a grafia em maiusculas da origem Oracle), para uso via broker sem disrupcao de consumidores diretos da base. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "SimCardCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "SimCard",
+      "fields": [
+        {"name": "NR_ICCID", "type": "string", "doc": "PK."},
+        {"name": "NR_IMSI", "type": "string"},
+        {"name": "CD_ASSIN", "type": "long", "doc": "FK -> TB_ASSIN.CD_ASSIN. NUMBER(10,0) na origem, mapeado para long."},
+        {"name": "DT_ATIV", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "DATE no Oracle (inclui hora), mapeado para timestamp-millis."},
+        {"name": "ST_SIM", "type": "string"}
+      ]
+    }}
+  ]
+}

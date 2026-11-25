@@ -1,0 +1,25 @@
+{
+  "type": "record",
+  "name": "PaymentMethodCreateEvent",
+  "namespace": "com.vivo.dataai.arrecadacao",
+  "doc": "Entidade TM Forum: PaymentMethod \u00b7 TMF670. Representa a forma de pagamento associada a conta de cobranca do cliente (boleto, debito em conta, cartao de credito ou PIX). Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "PaymentMethodCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "PaymentMethod",
+      "fields": [
+        {"name": "id_forma", "type": "string", "doc": "Identificador unico do PaymentMethod (TMF670 id)."},
+        {"name": "tp_forma", "type": "string", "doc": "Tipo da forma de pagamento (TMF670 paymentMethodType): boleto, debito, cartao ou PIX."},
+        {"name": "nr_final_cartao", "type": ["null", "string"], "default": null, "doc": "Ultimos digitos do cartao, quando tp_forma = cartao."},
+        {"name": "ds_bandeira", "type": ["null", "string"], "default": null, "doc": "Bandeira do cartao, quando tp_forma = cartao."},
+        {"name": "fl_preferencial", "type": "boolean", "doc": "Indica se e a forma de pagamento preferencial da conta (TMF670 preferred)."},
+        {"name": "id_conta", "type": "string", "doc": "Referencia a BillingAccount (TMF666) a que esta forma de pagamento pertence."},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "Data/hora da ultima atualizacao do registro."}
+      ]
+    }}
+  ]
+}

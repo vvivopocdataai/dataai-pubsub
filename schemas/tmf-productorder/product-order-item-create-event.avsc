@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "name": "ProductOrderItemCreateEvent",
+  "namespace": "com.vivo.dataai.tmfproductorder",
+  "doc": "Entidade TM Forum: ProductOrderItem \u00b7 TMF622. Espelha exatamente a tabela ATEND_PROD.TB_ITEM_PED (mesmos nomes e tipos de coluna, incluindo a grafia em maiusculas da origem Oracle), para uso via broker sem disrupcao de consumidores diretos da base. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "ProductOrderItemCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "ProductOrderItem",
+      "fields": [
+        {"name": "NR_PED", "type": "long", "doc": "PK1 (composta). FK -> TB_PED.NR_PED. NUMBER(10,0) na origem, mapeado para long."},
+        {"name": "NR_ITEM", "type": "int", "doc": "PK2 (composta). NUMBER(3,0) na origem."},
+        {"name": "CD_PLANO", "type": ["null", "string"], "default": null, "doc": "FK -> TB_PLANO.CD_PLANO, quando o item for um plano."},
+        {"name": "CD_SERV", "type": ["null", "string"], "default": null, "doc": "FK -> TB_SERV.CD_SERV, quando o item for um servico avulso."},
+        {"name": "TP_ACAO", "type": "string"},
+        {"name": "VL_ITEM", "type": {"type": "bytes", "logicalType": "decimal", "precision": 10, "scale": 2}}
+      ]
+    }}
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "com.vivo.dataai.arrecadacao.PaymentMethodCreateEvent": {
+    "schemaId": "7a35aafd240142dfaf735ddbf3c76d00",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/arrecadacao/payment-method-create-event.avsc"
+  },
+  "com.vivo.dataai.arrecadacao.PaymentReceivedEvent": {
+    "schemaId": "b7585c5fd16d4b879bf4dc37b2413c0d",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/arrecadacao/payment-received-event.avsc"
+  },
+  "com.vivo.dataai.arrecadacao.ReturnBatchProcessedEvent": {
+    "schemaId": "634fd9d2689d4b63b6ded14918a9345a",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/arrecadacao/return-batch-processed-event.avsc"
+  },
+  "com.vivo.dataai.billing.BillCopyRequestedEvent": {
+    "schemaId": "63be867b500c4d678f6b834da87b134d",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/billing/bill-copy-requested-event.avsc"
+  },
+  "com.vivo.dataai.billing.BillCreateEvent": {
+    "schemaId": "63f9df9c216a4c5da9757b716494f164",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/billing/bill-create-event.avsc"
+  },
+  "com.vivo.dataai.billing.BillingAccountCreateEvent": {
+    "schemaId": "73ece613b44a4e04b3b072f7f2470401",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/billing/billing-account-create-event.avsc"
+  },
+  "com.vivo.dataai.billing.DocFaturaCreateEvent": {
+    "schemaId": "cfa3573774504361b8035e68e1077ce1",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/billing/doc-fatura-create-event.avsc"
+  },
+  "com.vivo.dataai.billing.ItemFaturaCreateEvent": {
+    "schemaId": "e72ebd7bef0945bb95d56104694eaabf",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/billing/item-fatura-create-event.avsc"
+  },
+  "com.vivo.dataai.crm.ContactMediumCreateEvent": {
+    "schemaId": "23ee1797036a469ba66538dcedb94eac",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/crm/contact-medium-create-event.avsc"
+  },
+  "com.vivo.dataai.crm.CustomerCreateEvent": {
+    "schemaId": "37c9ceb338c64376a146efaaa34e620b",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/crm/customer-create-event.avsc"
+  },
+  "com.vivo.dataai.crm.IndividualCreateEvent": {
+    "schemaId": "cd86788a46ce40849d73ae16bd438cdc",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/crm/individual-create-event.avsc"
+  },
+  "com.vivo.dataai.crmlegado.LegacyAccountChangeEvent": {
+    "schemaId": "586a352da2b841e9aad8e0207c8483c4",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/crm_legado/legacy-account-change-event.avsc"
+  },
+  "com.vivo.dataai.crmlegado.LegacyCustomerAddressChangeEvent": {
+    "schemaId": "21ce39c98685443f8491441b698fb308",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/crm_legado/legacy-customer-address-change-event.avsc"
+  },
+  "com.vivo.dataai.crmlegado.LegacyCustomerChangeEvent": {
+    "schemaId": "58187aba98654915a86ff4b9cd2dd5a1",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/crm_legado/legacy-customer-change-event.avsc"
+  },
+  "com.vivo.dataai.customercare.MotivoAtendCreateEvent": {
+    "schemaId": "d447d1f42643445ea4093cc4ea664b02",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/customer_care/motivo-atend-create-event.avsc"
+  },
+  "com.vivo.dataai.customercare.ServiceTicketCreateEvent": {
+    "schemaId": "3072d654efd4495b9262b31dda177f1b",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/customer_care/service-ticket-create-event.avsc"
+  },
+  "com.vivo.dataai.notificacao.CommunicationSentEvent": {
+    "schemaId": "95094092c35e4c428fff98bcbd60d4b7",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/notificacao/communication-sent-event.avsc"
+  },
+  "com.vivo.dataai.notificacao.CommunicationTemplateCreateEvent": {
+    "schemaId": "1753c270bf4b409a85251692c98f609e",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/notificacao/communication-template-create-event.avsc"
+  },
+  "com.vivo.dataai.tmfproductcatalog.PlanoCreateEvent": {
+    "schemaId": "cc87c92fbf96404e8690f2a05ade3c75",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/tmf-productcatalog/plano-create-event.avsc"
+  },
+  "com.vivo.dataai.tmfproductcatalog.ServicoCreateEvent": {
+    "schemaId": "c8473b6895ad41109b11085bfc373ff1",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/tmf-productcatalog/servico-create-event.avsc"
+  },
+  "com.vivo.dataai.tmfproductinventory.ProductCreateEvent": {
+    "schemaId": "1c784d92c9204d638084c4508058c41f",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/tmf-productinventory/product-create-event.avsc"
+  },
+  "com.vivo.dataai.tmfproductinventory.ServAssinCreateEvent": {
+    "schemaId": "e2e220f299c64fc7bd2db5a56a795e10",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/tmf-productinventory/product-service-create-event.avsc"
+  },
+  "com.vivo.dataai.tmfproductinventory.SimCardCreateEvent": {
+    "schemaId": "d3e4c3ed5c6c465fa74f9fa8ea3c370b",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/tmf-productinventory/simcard-create-event.avsc"
+  },
+  "com.vivo.dataai.tmfproductorder.ProductOrderCreateEvent": {
+    "schemaId": "f6b7fc2b696045a7b6b66664df065ea0",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/tmf-productorder/product-order-create-event.avsc"
+  },
+  "com.vivo.dataai.tmfproductorder.ProductOrderItemCreateEvent": {
+    "schemaId": "e5a8abb3269e4ecfae89b23434e0a43a",
+    "version": 1,
+    "group": "application-schemas",
+    "file": "/home/hsdracones/stefanini/poc/vivo_databricks/schemas/tmf-productorder/product-order-item-create-event.avsc"
+  }
+}

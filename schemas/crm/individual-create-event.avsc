@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "name": "IndividualCreateEvent",
+  "namespace": "com.vivo.dataai.crm",
+  "doc": "Entidade TM Forum: Individual \u00b7 TMF632. Espelha exatamente a tabela crm_digital.party_individual (mesmos nomes e tipos de coluna), para uso via broker sem disrupcao de consumidores diretos da base. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "IndividualCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "Individual",
+      "fields": [
+        {"name": "id", "type": "string", "doc": "PK."},
+        {"name": "given_name", "type": "string"},
+        {"name": "family_name", "type": "string"},
+        {"name": "birth_date", "type": ["null", {"type": "int", "logicalType": "date"}], "default": null},
+        {"name": "cpf", "type": "string"},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+      ]
+    }}
+  ]
+}

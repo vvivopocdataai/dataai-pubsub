@@ -1,0 +1,23 @@
+{
+  "type": "record",
+  "name": "CommunicationTemplateCreateEvent",
+  "namespace": "com.vivo.dataai.notificacao",
+  "doc": "Sem entidade TM Forum equivalente (a associacao oficial da PoC nao identifica um recurso TMF correspondente). Representa um modelo de comunicacao (e-mail ou SMS) utilizado para o envio de CommunicationMessage (TMF681). Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "CommunicationTemplateCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "CommunicationTemplate",
+      "fields": [
+        {"name": "id_template", "type": "string", "doc": "Identificador unico do modelo de comunicacao."},
+        {"name": "nm_template", "type": "string", "doc": "Nome do modelo de comunicacao."},
+        {"name": "tp_canal", "type": "string", "doc": "Canal para o qual o modelo foi desenhado: e-mail ou SMS."},
+        {"name": "ds_corpo", "type": "string", "doc": "Corpo/texto do modelo de comunicacao."},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "Data/hora da ultima atualizacao do registro."}
+      ]
+    }}
+  ]
+}

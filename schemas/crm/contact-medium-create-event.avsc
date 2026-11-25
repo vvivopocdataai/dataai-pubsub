@@ -1,0 +1,25 @@
+{
+  "type": "record",
+  "name": "ContactMediumCreateEvent",
+  "namespace": "com.vivo.dataai.crm",
+  "doc": "Entidade TM Forum: ContactMedium \u00b7 TMF629. Espelha exatamente a tabela crm_digital.contact_medium (mesmos nomes e tipos de coluna), para uso via broker sem disrupcao de consumidores diretos da base. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "ContactMediumCreateEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "ContactMedium",
+      "fields": [
+        {"name": "id_contato", "type": "int", "doc": "PK."},
+        {"name": "customer_id", "type": "string", "doc": "FK -> customer.id."},
+        {"name": "medium_type", "type": "string"},
+        {"name": "preferred", "type": "boolean"},
+        {"name": "email_address", "type": ["null", "string"], "default": null},
+        {"name": "phone_number", "type": ["null", "string"], "default": null},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+      ]
+    }}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "type": "record",
+  "name": "BillCopyRequestedEvent",
+  "namespace": "com.vivo.dataai.billing",
+  "doc": "Entidade TM Forum: PartyInteraction \u00b7 TMF683. Representa a solicitacao de segunda via de uma fatura, registrada como uma interacao do cliente com a operadora. Contrato base v1.0.0.",
+  "fields": [
+    {"name": "eventId", "type": "string"},
+    {"name": "eventType", "type": "string", "default": "BillCopyRequestedEvent"},
+    {"name": "eventTime", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "domain", "type": "string", "default": "Commercial"},
+    {"name": "event", "type": {
+      "type": "record",
+      "name": "BillCopyRequest",
+      "fields": [
+        {"name": "nr_protocolo", "type": "string", "doc": "Identificador unico da PartyInteraction (TMF683 id/protocolo)."},
+        {"name": "dt_solicitacao", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "Data/hora em que a interacao foi registrada (TMF683 activityDate)."},
+        {"name": "ds_canal", "type": "string", "doc": "Canal pelo qual a interacao foi registrada (TMF683 channel)."},
+        {"name": "nr_fatura", "type": "string", "doc": "Referencia a CustomerBill (TMF678) alvo da solicitacao de segunda via."},
+        {"name": "cd_cli", "type": "string", "doc": "Referencia ao Customer/Individual (TMF629/TMF632) que solicitou a segunda via."},
+        {"name": "st_solicitacao", "type": "string", "doc": "Situacao da interacao (TMF683 status)."},
+        {"name": "dt_atualizacao", "type": {"type": "long", "logicalType": "timestamp-millis"}, "doc": "Data/hora da ultima atualizacao do registro."}
+      ]
+    }}
+  ]
+}
