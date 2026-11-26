@@ -1,0 +1,51 @@
+name: ci-publish-schema-registry
+
+# Dispara no merge em main deste repo (dataai-pubsub), quando schemas/** muda.
+# Registra de fato a nova versao do schema Avro no Schema Registry via OIDC
+# (sem secrets). O Azure Schema Registry rejeita automaticamente qualquer
+# registro incompativel com o modo de compatibilidade do grupo.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "schemas/**"
+
+permissions:
+  id-token: write   # necessario para o login OIDC (azure/login) sem secrets
+  contents: write    # necessario para commitar o manifesto atualizado
+
+env:
+  AZURE_EVENTHUB_NAMESPACE: eh-dataai-vivopoc.servicebus.windows.net
+  SCHEMA_REGISTRY_GROUP: application-schemas
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install --quiet azure-identity azure-schemaregistry
+
+      - name: Login no Azure via OIDC (Workload Identity Federation -- sem secrets)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CICD_MI_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Registrar schemas no Schema Registry (idempotente -- so cria versao nova se o conteudo mudou)
+        run: python3 scripts/register_schemas.py --manifest-out schema-registry-manifest.json
+
+      - name: Commit do manifesto atualizado (se houver mudanca)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add schema-registry-manifest.json
+          git diff --cached --quiet || git commit -m "chore: atualiza schema-registry-manifest.json [skip ci]"
+          git push
